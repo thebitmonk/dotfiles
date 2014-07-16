@@ -1,7 +1,13 @@
 set ruler
 set cursorline
 set number
+set t_Co=256
+set laststatus=1
 
+set encoding=utf-8
+set fenc=utf-8
+set termencoding=utf-8
+set noshowmode
 if has('vim_starting')
 	set nocompatible    
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -20,6 +26,7 @@ NeoBundle 'Shougo/neobundle.vim'
 NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'SirVer/ultisnips'
+NeoBundle 'bling/vim-airline'
 
 " NERDTree, Use F2 for toggle NERDTree
 nmap <silent> <F2> :NERDTreeToggle<CR>
@@ -52,6 +59,27 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 let g:UltiSnipsEditSplit="vertical"
 
 
+" Solarized stuff
+let g:solarized_termtrans = 1
+set background=dark
+colorscheme solarized
+
+" Vim airline settings
+
+let g:airline_theme='solarized'
+"branch parts
+let g:airline_enable_branch=1
+"seperators
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '◀'
+"modes
+let g:bufferline_echo = 0
+let g:airline_section_y=""
+"let g:airline_section_gutter=""
+let g:airline_detect_whitespace=0
+set ttimeoutlen=50
+
+
 syntax enable
 
 " Adding highlight for search
@@ -66,14 +94,11 @@ filetype indent on
 " word wrapping and inserted line breakes only when Enter key is hit
 set wrap
 set linebreak
-set nolist  " list disables linebreak
+set nolist  
+" list disables linebreak
 set textwidth=0
 set wrapmargin=0
 
-" Solarized stuff
-let g:solarized_termtrans = 1
-set background=dark
-colorscheme solarized
 
 " Markdown
 au BufRead,BufNewFile *.md set filetype=markdown
