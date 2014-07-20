@@ -8,6 +8,7 @@ set encoding=utf-8
 set fenc=utf-8
 set termencoding=utf-8
 set noshowmode
+
 if has('vim_starting')
 	set nocompatible    
 	set runtimepath+=~/.vim/bundle/neobundle.vim/
@@ -27,6 +28,7 @@ NeoBundle 'scrooloose/nerdtree'
 NeoBundle 'kien/ctrlp.vim'
 NeoBundle 'SirVer/ultisnips'
 NeoBundle 'bling/vim-airline'
+NeoBundle '907th/vim-auto-save'
 
 " NERDTree, Use F2 for toggle NERDTree
 nmap <silent> <F2> :NERDTreeToggle<CR>
@@ -79,6 +81,9 @@ let g:airline_section_y=""
 let g:airline_detect_whitespace=0
 set ttimeoutlen=50
 
+
+" Vim autosave settings
+let g:auto_save = 1 
 
 syntax enable
 
