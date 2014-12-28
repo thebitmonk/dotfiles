@@ -1,109 +1,103 @@
-set ruler
-set cursorline
+syntax on
+set clipboard=unnamed
 set number
-set t_Co=256
-set laststatus=1
+set tabstop=4 shiftwidth=4 expandtab
 
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Bundle 'gmarik/vundle'
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'scrooloose/nerdtree'
+Bundle 'tpope/vim-fugitive'
+Bundle 'gregsexton/gitv'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'vim-scripts/tComment'
+Bundle 'godlygeek/tabular' 
+Bundle 'vim-scripts/a.vim'
+Bundle 'szw/vim-tags'
+
+call vundle#end()
+
+
+filetype plugin indent on 
+let mapleader=","
+
+set cursorline
+set expandtab
+set modelines=0
+set shiftwidth=2
+set clipboard=unnamed
+set synmaxcol=128
+set ttyscroll=10
 set encoding=utf-8
-set fenc=utf-8
-set termencoding=utf-8
-set noshowmode
+set tabstop=2
+set nowrap
+set number
+set expandtab
+set nowritebackup
+set noswapfile
+set nobackup
+set hlsearch
+set ignorecase
+set smartcase
+set pastetoggle=<F2>
 
-if has('vim_starting')
-	set nocompatible    
-	set runtimepath+=~/.vim/bundle/neobundle.vim/
-	set runtimepath^=~/.vim/bundle/ctrlp.vim
+
+" NERDTree
+nmap <leader>n :NERDTreeTabsToggle<CR>
+
+let NERDTreeHighlightCursorline=1
+let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
+
+" NERD Tree Tabs Toggle 
+let g:nerdtree_tabs_open_on_console_startup=1
+let g:nerdtree_tabs_focus_on_files=1
+
+" Quit with :Q
+command -nargs=0 Quit :qa!
+
+" Ctrl P
+set runtimepath^=~/.vim/bundle/ctrlp.vim
+" :helptags ~/.vim/bundle/ctrlp.vim/doc
+set tags=./tags;
+
+"Ctrl P and NerdTree magic
+let g:NERDTreeChDirMode       = 2
+let g:ctrlp_working_path_mode = 'rw'
+
+" Git fugitive
+nnoremap <space>ga :Git add %:p<CR><CR>
+nnoremap <space>gs :Gstatus<CR>
+nnoremap <space>gc :Gcommit -v -q<CR>
+nnoremap <space>gt :Gcommit -v -q %:p<CR>
+nnoremap <space>gd :Gdiff<CR>
+nnoremap <space>ge :Gedit<CR>
+nnoremap <space>gr :Gread<CR>
+nnoremap <space>gw :Gwrite<CR><CR>
+nnoremap <space>gl :silent! Glog<CR>:bot copen<CR>
+nnoremap <space>gp :Ggrep<Space>
+nnoremap <space>gm :Gmove<Space>
+nnoremap <space>gb :Git branch<Space>
+nnoremap <space>go :Git checkout<Space>
+nnoremap <space>gps :Dispatch! git push<CR>
+nnoremap <space>gpl :Dispatch! git pull<CR>
+
+
+let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+
+let mapleader=','
+if exists(":Tabularize")
+  nmap <Leader>a= :Tab /=<CR>
+  vmap <Leader>a= :Tab /=<CR>
+  nmap <Leader>a: :Tab /:\zs<CR>
+  vmap <Leader>a: :Tab /:\zs<CR>
 endif
 
-call neobundle#begin(expand('~/.vim/bundle/'))
-NeoBundleFetch 'Shougo/neobundle.vim'
-call neobundle#end()
-filetype plugin indent on
-NeoBundleCheck
+" Setting color scheme
+colorscheme morning
 
-
-" My Bundles here:
-NeoBundle 'Shougo/neobundle.vim'
-NeoBundle 'scrooloose/nerdtree'
-NeoBundle 'kien/ctrlp.vim'
-NeoBundle 'SirVer/ultisnips'
-NeoBundle 'bling/vim-airline'
-NeoBundle '907th/vim-auto-save'
-
-" NERDTree, Use F2 for toggle NERDTree
-nmap <silent> <F2> :NERDTreeToggle<CR>
-" For mouse click in NERDTree
-:set mouse=a
-let g:NERDTreeMouseMode=2 
-
-
-" Ctrl P Settings
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
-let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_use_caching = 1
-let g:ctrlp_clear_cache_on_exit = 1 
-let g:ctrlp_cache_dir = '$HOME/.vim/cache/ctrlp'
-let g:ctrlp_max_height=40
-let g:ctrlp_show_hidden=0
-let g:ctrlp_follow_symlinks=1
-let g:ctrlp_max_files=20000
-let g:ctrlp_custom_ignore = {'dir': '\v[\/]\.(git|hg|svn|idea|cache|android)$','file': '\v\.DS_Store$'}
-
-
-" Ulti Snips
-" Trigger configuration. Do not use <tab> if you use
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-
-" Solarized stuff
-let g:solarized_termtrans = 1
-set background=dark
-colorscheme solarized
-
-" Vim airline settings
-
-let g:airline_theme='solarized'
-"branch parts
-let g:airline_enable_branch=1
-"seperators
-let g:airline_left_sep = '▶'
-let g:airline_right_sep = '◀'
-"modes
-let g:bufferline_echo = 0
-let g:airline_section_y=""
-"let g:airline_section_gutter=""
-let g:airline_detect_whitespace=0
-set ttimeoutlen=50
-
-
-" Vim autosave settings
-let g:auto_save = 1 
-
-syntax enable
-
-" Adding highlight for search
-set hlsearch
-
-" Indentation
-set autoindent
-
-" load indent file for the current filetype
-filetype indent on
-
-" word wrapping and inserted line breakes only when Enter key is hit
-set wrap
-set linebreak
-set nolist  
-" list disables linebreak
-set textwidth=0
-set wrapmargin=0
-
-
-" Markdown
-au BufRead,BufNewFile *.md set filetype=markdown
