@@ -2,6 +2,9 @@ syntax on
 set clipboard=unnamed
 set number
 set tabstop=4 shiftwidth=4 expandtab
+let mapleader=","
+
+let &t_Co=256
 
 set nocompatible
 filetype off
@@ -9,25 +12,30 @@ filetype off
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-Bundle 'gmarik/vundle'
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'scrooloose/nerdtree'
-Bundle 'tpope/vim-fugitive'
-Bundle 'gregsexton/gitv'
-Bundle 'flazz/vim-colorschemes'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'vim-scripts/tComment'
-Bundle 'godlygeek/tabular' 
-Bundle 'vim-scripts/a.vim'
-Bundle 'szw/vim-tags'
+Plugin 'gmarik/vundle'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'gregsexton/gitv'
+Plugin 'flazz/vim-colorschemes'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'fatih/vim-go'
+Plugin 'majutsushi/tagbar'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'mileszs/ack.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'vim-scripts/a.vim'
+Plugin 'tpope/vim-surround'
+Plugin 'kien/ctrlp.vim'
 
-call vundle#end()
+call vundle#end()  
 
+" Setting color scheme
+colorscheme molokai 
+
+let g:go_disable_autoinstall = 0  
 
 filetype plugin indent on 
-let mapleader=","
-
-set cursorline
 set expandtab
 set modelines=0
 set shiftwidth=2
@@ -48,15 +56,19 @@ set smartcase
 set pastetoggle=<F2>
 
 
-" NERDTree
-nmap <leader>n :NERDTreeTabsToggle<CR>
-
 let NERDTreeHighlightCursorline=1
 let NERDTreeIgnore = ['tmp', '.yardoc', 'pkg']
 
+" NERDTree
+nmap <leader>n :NERDTreeTabsToggle<CR>
 " NERD Tree Tabs Toggle 
+
 let g:nerdtree_tabs_open_on_console_startup=1
 let g:nerdtree_tabs_focus_on_files=1
+
+map  <C-l> :tabn<CR>
+map  <C-h> :tabp<CR>
+map  <C-n> :tabnew<CR>
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
@@ -66,9 +78,15 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
 set tags=./tags;
 
+
 "Ctrl P and NerdTree magic
 let g:NERDTreeChDirMode       = 2
 let g:ctrlp_working_path_mode = 'rw'
+
+map  <S-l> :tabn<CR>
+map  <S-h> :tabp<CR>
+map  <S-n> :tabnew<CR>
+
 
 " Git fugitive
 nnoremap <space>ga :Git add %:p<CR><CR>
@@ -87,17 +105,67 @@ nnoremap <space>go :Git checkout<Space>
 nnoremap <space>gps :Dispatch! git push<CR>
 nnoremap <space>gpl :Dispatch! git pull<CR>
 
+let g:tagbar_type_go = {  
+    \ 'ctagstype' : 'go',
+    \ 'kinds'     : [
+        \ 'p:package',
+        \ 'i:imports:1',
+        \ 'c:constants',
+        \ 'v:variables',
+        \ 't:types',
+        \ 'n:interfaces',
+        \ 'w:fields',
+        \ 'e:embedded',
+        \ 'm:methods',
+        \ 'r:constructor',
+        \ 'f:functions'
+    \ ],
+    \ 'sro' : '.',
+    \ 'kind2scope' : {
+        \ 't' : 'ctype',
+        \ 'n' : 'ntype'
+    \ },
+    \ 'scope2kind' : {
+        \ 'ctype' : 't',
+        \ 'ntype' : 'n'
+    \ },
+    \ 'ctagsbin'  : 'gotags',
+    \ 'ctagsargs' : '-sort -silent'
+\ }
 
-let g:ycm_global_ycm_extra_conf='~/.ycm_extra_conf.py'
+" Tag bar toggle
+nmap <F8> :TagbarToggle<CR>
 
-let mapleader=','
-if exists(":Tabularize")
-  nmap <Leader>a= :Tab /=<CR>
-  vmap <Leader>a= :Tab /=<CR>
-  nmap <Leader>a: :Tab /:\zs<CR>
-  vmap <Leader>a: :Tab /:\zs<CR>
-endif
+let g:ycm_global_ycm_extra_conf='~/.vim/.ycm_extra_conf.py'
+let g:ycm_path_to_python_interpreter = "/usr/bin/python"
 
-" Setting color scheme
-colorscheme morning
+au BufWritePost *.c,*.cpp,*.h,*.go silent! !ctags -R &
+au FileType go nmap <Leader>s <Plug>(go-implements)
+au FileType go nmap <Leader>i <Plug>(go-info)
+au FileType go nmap <Leader>gd <Plug>(go-doc)
+au FileType go nmap <Leader>gv <Plug>(go-doc-vertical)
+au FileType go nmap <leader>r <Plug>(go-run)
+au FileType go nmap <leader>b <Plug>(go-build)
+au FileType go nmap <leader>t <Plug>(go-test)
+au FileType go nmap <leader>c <Plug>(go-coverage)
+au BufRead,BufNewFile Capfile set filetype=ruby
 
+" Mapping Ack key
+nnoremap <leader>a :Ack
+
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+map + <c-w>+
+map - <c-w>-
+
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
+
+let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
