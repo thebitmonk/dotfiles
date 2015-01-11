@@ -2,13 +2,16 @@ syntax on
 set clipboard=unnamed
 set number
 set tabstop=4 shiftwidth=4 expandtab
+
+
+set backspace=indent,eol,start
 let mapleader=","
 
 let &t_Co=256
 
 set nocompatible
 filetype off
-
+filetype plugin on
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -27,6 +30,12 @@ Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/a.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'kien/ctrlp.vim'
+Plugin 'matze/vim-move'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'ervandew/supertab'
 
 call vundle#end()  
 
@@ -68,7 +77,6 @@ let g:nerdtree_tabs_focus_on_files=1
 
 map  <C-l> :tabn<CR>
 map  <C-h> :tabp<CR>
-map  <C-n> :tabnew<CR>
 
 " Quit with :Q
 command -nargs=0 Quit :qa!
@@ -85,7 +93,6 @@ let g:ctrlp_working_path_mode = 'rw'
 
 map  <S-l> :tabn<CR>
 map  <S-h> :tabp<CR>
-map  <S-n> :tabnew<CR>
 
 
 " Git fugitive
@@ -153,6 +160,7 @@ au BufRead,BufNewFile Capfile set filetype=ruby
 " Mapping Ack key
 nnoremap <leader>a :Ack
 
+" Increase decrease size of screen
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -160,12 +168,64 @@ nnoremap <C-H> <C-W><C-H>
 
 map + <c-w>+
 map - <c-w>-
+map < <c-w><
+map > <c-w>>
+map <Bar> <c-w><Bar>
+map _ <c-w>_
+nnoremap <F5> :call WindowToggle()<cr>
+map <F2> :call RestoreWindows()<cr>
 
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/.ycm_extra_conf.py'
+
+let g:window_is_maximized = 0
+function! WindowToggle()
+    if g:window_is_maximized
+        let g:window_is_maximized= 0
+        :call RestoreWindows()
+        :exe "normal \<c-w>\="
+    else
+        let g:window_is_maximized = 1
+        :exe "normal \<c-w>\_\<c-w>\<Bar>"
+    endif
+endfunction
+
+function! RestoreWindows()
+  let g:window_is_maximized= 0
+  :exe ":NERDTreeToggle"
+  :exe ":vertical resize 31"
+endfunction
+
+" Move lines up and down. Effective to move blocks of text in visual mode
+nnoremap ∆ :m .+1<CR>==
+nnoremap ˚ :m .-2<CR>==
+
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+
+vnoremap ∆ :m '>+1<CR>gv=gv
+vnoremap ˚ :m '<-2<CR>gv=gv
+
+" Move a window to a tab in nerd tree
+nnoremap <C-n> :tab split<CR> 
+
+inoremap ∆ <Esc>:m .+1<CR>==gi
+inoremap ˚ <Esc>:m .-2<CR>==gi
+
+
+" Ctrl P ignore files
+set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
+
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/]\.(git|hg|svn)$',
+  \ 'file': '\v\.(exe|so|dll)$'
+  \ }
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
