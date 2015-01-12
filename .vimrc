@@ -10,8 +10,10 @@ let mapleader=","
 let &t_Co=256
 
 set nocompatible
+
+set nocompatible
 filetype off
-filetype plugin on
+
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
@@ -24,7 +26,6 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'fatih/vim-go'
 Plugin 'majutsushi/tagbar'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'mileszs/ack.vim'
 Plugin 'godlygeek/tabular'
 Plugin 'vim-scripts/a.vim'
@@ -36,9 +37,15 @@ Plugin 'honza/vim-snippets'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'Raimondi/delimitMate'
+Plugin 'bling/vim-airline'
+Plugin 'shime/vim-livedown'
+Plugin 'rizzatti/dash.vim'
 
 call vundle#end()  
 
+filetype plugin on
 " Setting color scheme
 colorscheme molokai 
 
@@ -156,6 +163,8 @@ au FileType go nmap <leader>b <Plug>(go-build)
 au FileType go nmap <leader>t <Plug>(go-test)
 au FileType go nmap <leader>c <Plug>(go-coverage)
 au BufRead,BufNewFile Capfile set filetype=ruby
+autocmd BufRead,BufNewFile *.scala set filetype=scala
+autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Mapping Ack key
 nnoremap <leader>a :Ack
@@ -166,14 +175,14 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-map + <c-w>+
-map - <c-w>-
-map < <c-w><
-map > <c-w>>
-map <Bar> <c-w><Bar>
-map _ <c-w>_
+nnoremap + <c-w>+
+nnoremap - <c-w>-
+nnoremap < <c-w><
+nnoremap > <c-w>>
+nnoremap <Bar> <c-w><Bar>
+nnoremap _ <c-w>_
 nnoremap <F5> :call WindowToggle()<cr>
-map <F2> :call RestoreWindows()<cr>
+nnoremap <F2> :call RestoreWindows()<cr>
 
 
 
@@ -229,3 +238,25 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 let g:UltiSnipsExpandTrigger = "<tab>"
 let g:UltiSnipsJumpForwardTrigger = "<tab>"
 let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+
+
+let g:airline_theme= 'zenburn'
+let g:airline_enable_branch     = 1
+let g:airline_enable_syntastic  = 1
+
+let g:airline_left_sep          = '⮀'
+let g:airline_left_alt_sep      = '⮁'
+let g:airline_right_sep         = '⮂'
+let g:airline_right_alt_sep     = '⮃'
+let g:airline_branch_prefix     = '⭠'
+let g:airline_readonly_symbol   = '⭤'
+let g:airline_linecolumn_prefix = '⭡'
+
+
+let g:livedown_autorun = 1
+
+" should the browser window pop-up upon previewing
+let g:livedown_open = 1 
+
+" the port on which Livedown server will run
+let g:livedown_port = 1337
