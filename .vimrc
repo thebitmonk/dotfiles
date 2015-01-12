@@ -35,13 +35,13 @@ Plugin 'matze/vim-move'
 Plugin 'SirVer/ultisnips'
 Plugin 'honza/vim-snippets'
 Plugin 'jeffkreeftmeijer/vim-numbertoggle'
-Plugin 'scrooloose/nerdcommenter'
 Plugin 'ervandew/supertab'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'Raimondi/delimitMate'
 Plugin 'bling/vim-airline'
 Plugin 'shime/vim-livedown'
 Plugin 'rizzatti/dash.vim'
+Plugin 'tpope/vim-commentary'
 
 call vundle#end()  
 
