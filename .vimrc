@@ -42,12 +42,17 @@ Plugin 'bling/vim-airline'
 Plugin 'shime/vim-livedown'
 Plugin 'rizzatti/dash.vim'
 Plugin 'tpope/vim-commentary'
+Plugin 'davidhalter/jedi-vim'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mattesgroeger/vim-bookmarks'
+Plugin 'airblade/vim-gitgutter'
 
 call vundle#end()  
 
 filetype plugin on
 " Setting color scheme
-colorscheme molokai 
+colorscheme solarized 
+
 
 let g:go_disable_autoinstall = 0  
 
@@ -91,7 +96,7 @@ command -nargs=0 Quit :qa!
 " Ctrl P
 set runtimepath^=~/.vim/bundle/ctrlp.vim
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
-set tags=./tags;
+
 
 
 "Ctrl P and NerdTree magic
@@ -260,3 +265,9 @@ let g:livedown_open = 1
 
 " the port on which Livedown server will run
 let g:livedown_port = 1337
+
+" Dash settings
+nmap <silent> <leader>d <Plug>DashSearch
+
+" Changing vim gutter color ( git - gutter sidebar"
+:highlight SignColumn ctermbg=None
