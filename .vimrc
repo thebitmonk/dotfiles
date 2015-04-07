@@ -46,13 +46,16 @@ Plugin 'davidhalter/jedi-vim'
 Plugin 'pangloss/vim-javascript'
 Plugin 'mattesgroeger/vim-bookmarks'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'nelstrom/vim-visual-star-search'
+Plugin 'tommcdo/vim-exchange'
+Plugin 'tpope/vim-repeat'
 
 call vundle#end()  
 
 filetype plugin on
+
 " Setting color scheme
 colorscheme solarized 
-
 
 let g:go_disable_autoinstall = 0  
 
@@ -188,8 +191,12 @@ nnoremap <Bar> <c-w><Bar>
 nnoremap _ <c-w>_
 nnoremap <F5> :call WindowToggle()<cr>
 nnoremap <F2> :call RestoreWindows()<cr>
+nnoremap <F6> :call AlignColumns()<cr>
 
-
+" Userful if you want to align columns of csv or other such files. 
+function! AlignColumns()
+  :exe ":%!column -t"
+endfunction
 
 let g:window_is_maximized = 0
 function! WindowToggle()
@@ -271,3 +278,9 @@ nmap <silent> <leader>d <Plug>DashSearch
 
 " Changing vim gutter color ( git - gutter sidebar"
 :highlight SignColumn ctermbg=None
+
+
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
