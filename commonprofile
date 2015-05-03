@@ -1,0 +1,26 @@
+export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games"
+export GOROOT=/usr/local/go
+export PATH=$PATH:$GOROOT/bin
+
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+
+export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
+
+export KIJI_HOME="/home/bitmonk/Desktop/sw/kiji-bento-buri"
+alias ish='ssh -i ~/keys/ssh/indix -l ec2-user -o GSSAPIAuthentication=no -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+
+export EDITOR="/usr/bin/vim"
+
+HISTSIZE=5000 # session history size
+SAVEHIST=5000 # saved history
+HISTFILE=~/.zshistory # history file
+
+source /home/bitmonk/.rvm/scripts/rvm
+export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting
+alias open="nautilus"
+alias music stop="sudo mpc stop"
+alias music="mpd || true && ncmpcpp"
+export LC_ALL=en_US.UTF-8
+#export LC_CTYPE=en_US.UTF-8
+export LANG=en_US.UTF-8
