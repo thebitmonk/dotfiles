@@ -1,15 +1,13 @@
 syntax on
-set clipboard=unnamed
+set clipboard^=unnamedplus
 set number
 set tabstop=4 shiftwidth=4 expandtab
-
+:se mouse+=a
 
 set backspace=indent,eol,start
-let mapleader=","
+let mapleader="\\"
 
 let &t_Co=256
-
-set nocompatible
 
 set nocompatible
 filetype off
@@ -49,13 +47,16 @@ Plugin 'airblade/vim-gitgutter'
 Plugin 'nelstrom/vim-visual-star-search'
 Plugin 'tommcdo/vim-exchange'
 Plugin 'tpope/vim-repeat'
+Plugin 'mattn/gist-vim'
+Plugin 'mattn/emmet-vim'
+Plugin 'mbbill/undotree'
+Plugin 'Lokaltog/vim-easymotion'
 
 call vundle#end()  
 
 filetype plugin on
 
-" Setting color scheme
-colorscheme solarized 
+let g:user_emmet_leader_key='<C-Z>'
 
 let g:go_disable_autoinstall = 0  
 
@@ -63,7 +64,6 @@ filetype plugin indent on
 set expandtab
 set modelines=0
 set shiftwidth=2
-set clipboard=unnamed
 set synmaxcol=128
 set ttyscroll=10
 set encoding=utf-8
@@ -101,6 +101,7 @@ set runtimepath^=~/.vim/bundle/ctrlp.vim
 " :helptags ~/.vim/bundle/ctrlp.vim/doc
 
 
+nnoremap <leader>o :!echo `git url`/blob/`git rev-parse --abbrev-ref HEAD`/%\#L<C-R>=line('.')<CR> \| xargs open<CR><CR>
 
 "Ctrl P and NerdTree magic
 let g:NERDTreeChDirMode       = 2
@@ -175,7 +176,7 @@ autocmd BufRead,BufNewFile *.scala set filetype=scala
 autocmd BufNewFile,BufReadPost *.md set filetype=markdown
 
 " Mapping Ack key
-nnoremap <leader>a :Ack
+nnoremap <leader>a :!ack
 
 " Increase decrease size of screen
 nnoremap <C-J> <C-W><C-J>
@@ -189,9 +190,13 @@ nnoremap < <c-w><
 nnoremap > <c-w>>
 nnoremap <Bar> <c-w><Bar>
 nnoremap _ <c-w>_
-nnoremap <F5> :call WindowToggle()<cr>
+
 nnoremap <F2> :call RestoreWindows()<cr>
+nnoremap <F3> :set hlsearch!<CR>
+nnoremap <F4> :UndotreeToggle<cr>
+nnoremap <F5> :call WindowToggle()<cr>
 nnoremap <F6> :call AlignColumns()<cr>
+
 
 " Userful if you want to align columns of csv or other such files. 
 function! AlignColumns()
@@ -238,7 +243,7 @@ set wildignore+=*/tmp/*,*.so,*.swp,*.zip     " MacOSX/Linux
 
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\v[\/]\.(git|hg|svn)$',
-  \ 'file': '\v\.(exe|so|dll)$'
+  \ 'file': '\v\.(o|out|class|swp|pyc|wav|mp3|ogg|blend|pdf|patch|txt|jar|so|iml|pyc)$'
   \ }
 
 " make YCM compatible with UltiSnips (using supertab)
@@ -256,16 +261,20 @@ let g:airline_theme= 'zenburn'
 let g:airline_enable_branch     = 1
 let g:airline_enable_syntastic  = 1
 
-let g:airline_left_sep          = '⮀'
-let g:airline_left_alt_sep      = '⮁'
-let g:airline_right_sep         = '⮂'
-let g:airline_right_alt_sep     = '⮃'
-let g:airline_branch_prefix     = '⭠'
-let g:airline_readonly_symbol   = '⭤'
-let g:airline_linecolumn_prefix = '⭡'
+let gLaurline_powerline_font = 1
+" let g:airline_left_sep          = '⮀'
+" let g:airline_left_alt_sep      = '⮁'
+" let g:airline_right_sep         = '⮂'
+" let g:airline_right_alt_sep     = '⮃'
+" let g:airline_branch_prefix     = '⭠'
+" let g:airline_readonly_symbol   = '⭤'
+" let g:airline_linecolumn_prefix = '⭡'
 
 
-let g:livedown_autorun = 1
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '▶'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '◀'
 
 " should the browser window pop-up upon previewing
 let g:livedown_open = 1 
