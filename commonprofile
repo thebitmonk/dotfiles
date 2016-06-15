@@ -7,9 +7,6 @@ export PATH=$PATH:$GOPATH/bin
 
 export JAVA_HOME="/usr/lib/jvm/java-7-openjdk-amd64"
 
-export KIJI_HOME="/home/bitmonk/Desktop/sw/kiji-bento-buri"
-alias ish='ssh -i ~/keys/ssh/indix -l ec2-user -o GSSAPIAuthentication=no -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
-
 export EDITOR="/usr/bin/vim"
 
 HISTSIZE=5000 # session history size
