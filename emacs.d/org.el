@@ -13,12 +13,11 @@
 ;; (add-to-list 'auto-mode-alist '("\\.org$" . org-mode))
 ;; The above is the default in recent emacsen
 
+(eval-after-load "org"
+  '(require 'ox-md nil t))
+
 (setq org-agenda-files (list "~/org/sendx.org"
                              "~/org/home.org"))
-
-(add-hook 'org-mode-hook
-          (lambda ()
-            (org-bullets-mode t)))
 
 (setq org-hide-leading-stars t)
 (setq org-ellipsis "⤵")
@@ -54,4 +53,15 @@
   (end-of-buffer))
 
 (global-set-key (kbd "C-c i") 'open-index-file)
+
+
+(setq org-default-notes-file (concat org-directory "/notes.org"))
+(setq org-export-coding-system 'utf-8)
+(define-key global-map "\C-cc" 'org-capture)
+
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+
+
 

@@ -26,9 +26,18 @@
 
 
 (defun my-go-mode-hook ()
-  (require 'flymake)
-  (setq load-path (cons "/home/bitmonk/go/src/github.com/dougm/goflymake" load-path))
-  (require 'go-flymake)
+
+  (require 'go-autocomplete)
+
+  ;; disable gui messages
+  ;; (setq flymake-gui-warnings-enabled nil)
+
+  ;; don't start flymake on initial open.
+  ;; (setq flymake-start-syntax-check-on-find-file nil)
+
+  ;; (require 'flymake)
+  ;; (add-to-list 'load-path "/home/bitmonk/go/src/github.com/dougm/goflymake")
+  ;; (require 'go-flymake)
   ; Use goimports instead of go-fmt
   (setq gofmt-command "goimports")
   ; Call Gofmt before saving
