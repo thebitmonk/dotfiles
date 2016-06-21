@@ -4,9 +4,12 @@
 ; No toolbar
 (tool-bar-mode -1)
 
+(set-face-attribute 'default nil :height 140)
+
+
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes/")
 ; load proper theme
-(load-theme 'base16-railscasts-dark t)
+(load-theme 'base16-solarized-dark t)
 
 ; Enabling visual line mode
 (global-visual-line-mode t)
