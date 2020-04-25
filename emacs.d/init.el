@@ -4,8 +4,11 @@
 (require 'package)
 
 
+(add-to-list 'package-archives '("org" . "https://orgmode.org/elpa/") t)
+
 (add-to-list 'package-archives
   '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
 
 (when (< emacs-major-version 24)
   ;; For important compatibility libraries like cl-lib
@@ -15,7 +18,7 @@
 ; Initialize the package manager
 (package-initialize)
 
-(setq default-directory (concat (getenv "HOME") "/go/src/github.com/thebitmonk/sendx/platform"))
+(setq default-directory (concat (getenv "HOME") "/go/src/github.com/thebitmonk/sendx/smtp/api_server"))
 
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
@@ -80,23 +83,121 @@
 ; Load fiplr file
 (load-user-file "fiplr.el")
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-   (quote
-    ("aed73c6d0afcf2232bb25ed2d872c7a1c4f1bda6759f84afc24de6a1aec93da8" "91fba9a99f7b64390e1f56319c3dbbaed22de1b9676b3c73d935bf62277b799c" "d69a0f6d860eeff5ca5f229d0373690782a99aee2410a3eed8a31332a7101f1e" "101a10b15bbbd0d5a0e56e4773e614962197886780afb2d62523a63a144ad96c" "f2503f0a035c2122984e90eb184185769ee665de5864edc19b339856942d2d2d" "b6db49cec08652adf1ff2341ce32c7303be313b0de38c621676122f255ee46db" "e8e744a1b0726814ac3ab86ad5ccdf658b9ff1c5a63c4dc23841007874044d4a" "09669536b4a71f409e7e2fd56609cd7f0dff2850d4cbfb43916cc1843c463b80" "e24679edfdea016519c0e2d4a5e57157a11f928b7ef4361d00c23a7fe54b8e01" "8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "a8245b7cc985a0610d71f9852e9f2767ad1b852c2bdea6f4aadc12cce9c4d6d0" "d677ef584c6dfc0697901a44b885cc18e206f05114c8a3b7fde674fce6180879" default)))
- '(org-agenda-files
-   (quote
-    ("~/go/src/github.com/thebitmonk/sendx/platform/notes.org"))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
+; Load ox-reveal file
+(load-user-file "ox-reveal.el")
+
+(require 'org-roam)
+(define-key org-roam-mode-map (kbd "C-c n l") #'org-roam)
+(define-key org-roam-mode-map (kbd "C-c n f") #'org-roam-find-file)
+(define-key org-roam-mode-map (kbd "C-c n b") #'org-roam-switch-to-buffer)
+(define-key org-roam-mode-map (kbd "C-c n g") #'org-roam-graph)
+(define-key org-mode-map (kbd "C-c n i") #'org-roam-insert)
+(org-roam-mode +1)
+
+(require 'org-roam-protocol)
+
+(setq org-roam-directory "~/Desktop/zettelkasten/")
+(setq org-roam-link-title-format "R:%s")
+(setq org-roam-completion-system 'default)
 
 
-(put 'narrow-to-region 'disabled nil)
+(require 'company-org-roam)
+(push 'company-org-roam company-backends)
+
+(require 'deft)
+(setq deft-extensions '("txt" "tex" "org"))
+(setq deft-directory "~/Desktop/zettelkasten/")
+(setq deft-recursive t)
+(global-set-key [f8] 'deft)
+(setq deft-use-filename-as-title t)
+(setq deft-file-naming-rules
+      '((noslash . "-")
+        (nospace . "-")
+        (case-fn . downcase)))
+(global-set-key (kbd "C-x C-g") 'deft-find-file)
+
+
+(require 'org-download)
+
+(setq-default org-download-image-dir "~/Desktop/zettelkasten/images")
+
+;; Drag-and-drop to `dired`
+(add-hook 'dired-mode-hook 'org-download-enable)
+
+
+(setq org-agenda-files (list "~/Desktop/zettelkasten/"))
+
+(require 'company-org-roam)
+(push 'company-org-roam company-backends)
+
+(defun org-roam--make-file (file-path &optional title)
+  "Create an org-roam file at FILE-PATH, optionally setting the TITLE attribute."
+  (if (file-exists-p file-path)
+      (error (format "Aborting, file already exists at %s" file-path))
+    (if org-roam-autopopulate-title
+        (org-roam--populate-title file-path title)
+      (make-empty-file file-path))
+    (save-window-excursion
+      (with-current-buffer (find-file file-path)
+        (org-roam--update-cache)
+        ))))
+
+(setq org-todo-keywords
+      '(
+        (sequence "IDEA(i)" "TODO(t)" "STARTED(s)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)")
+        (sequence "|" "CANCELED(c)" "DELEGATED(l)" "SOMEDAY(f)")
+        ))
+
+(setq org-todo-keyword-faces
+      '(("IDEA" . (:foreground "GoldenRod" :weight bold))
+        ("NEXT" . (:foreground "IndianRed1" :weight bold))   
+        ("STARTED" . (:foreground "OrangeRed" :weight bold))
+        ("WAITING" . (:foreground "coral" :weight bold)) 
+        ("CANCELED" . (:foreground "LimeGreen" :weight bold))
+        ("DELEGATED" . (:foreground "LimeGreen" :weight bold))
+        ("SOMEDAY" . (:foreground "LimeGreen" :weight bold))
+        ))
+
+(setq org-tag-persistent-alist 
+      '((:startgroup . nil)
+        ("HOME" . ?h) 
+        ("RESEARCH" . ?r)
+        ("TEACHING" . ?t)
+        (:endgroup . nil)
+        (:startgroup . nil)
+        ("OS" . ?o) 
+        ("DEV" . ?d)
+        ("WWW" . ?w)
+        (:endgroup . nil)
+        (:startgroup . nil)
+        ("EASY" . ?e)
+        ("MEDIUM" . ?m)
+        ("HARD" . ?a)
+        (:endgroup . nil)
+        ("URGENT" . ?u)
+        ("KEY" . ?k)
+        ("BONUS" . ?b)
+        ("noexport" . ?x)  
+        )
+      )
+
+(setq org-tag-faces
+      '(
+        ("HOME" . (:foreground "GoldenRod" :weight bold))
+        ("RESEARCH" . (:foreground "GoldenRod" :weight bold))
+        ("TEACHING" . (:foreground "GoldenRod" :weight bold))
+        ("OS" . (:foreground "IndianRed1" :weight bold))   
+        ("DEV" . (:foreground "IndianRed1" :weight bold))   
+        ("WWW" . (:foreground "IndianRed1" :weight bold))
+        ("URGENT" . (:foreground "Red" :weight bold))  
+        ("KEY" . (:foreground "Red" :weight bold))  
+        ("EASY" . (:foreground "OrangeRed" :weight bold))  
+        ("MEDIUM" . (:foreground "OrangeRed" :weight bold))  
+        ("HARD" . (:foreground "OrangeRed" :weight bold))  
+        ("BONUS" . (:foreground "GoldenRod" :weight bold))
+        ("noexport" . (:foreground "LimeGreen" :weight bold))  
+        )
+)
+
+(require 'ox-reveal)
+

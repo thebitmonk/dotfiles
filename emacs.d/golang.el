@@ -1,7 +1,3 @@
-(require 'go-mode-autoloads)
-
-
-
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (replace-regexp-in-string
                           "[ \t\n]*$"
@@ -13,12 +9,12 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
-(setenv "GOPATH" "/home/bitmonk/go")
+(setenv "GOPATH" "/Users/thebitmonk/go")
 
 
 (setq exec-path (cons "/usr/local/go/bin" exec-path))
-(setenv "PATH" (concat (getenv "PATH") ":" "/home/bitmonk/go/bin"))
-(setq exec-path (append exec-path (list (expand-file-name "/home/bitmonk/go/bin"))))
+(setenv "PATH" (concat (getenv "PATH") ":" "/Users/thebitmonk/go/bin"))
+(setq exec-path (append exec-path (list (expand-file-name "/Users/thebitmonk/go/bin"))))
 
 (defun auto-complete-for-go ()
   (auto-complete-mode 1))
@@ -28,6 +24,8 @@
 (defun my-go-mode-hook ()
 
   (require 'go-autocomplete)
+  (require 'auto-complete-config)
+  (ac-config-default)
 
   ;; disable gui messages
   ;; (setq flymake-gui-warnings-enabled nil)
