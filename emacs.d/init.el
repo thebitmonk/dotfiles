@@ -201,3 +201,39 @@
 
 (require 'ox-reveal)
 
+(defun org-html-export-to-html
+   (&optional async subtreep visible-only body-only ext-plist)
+   (interactive)
+   (let* ((extension (concat "." org-html-extension))
+      (file (org-export-output-file-name extension subtreep "/Users/thebitmonk/Desktop/zettelkasten/export/docs"))
+      (org-export-coding-system org-html-coding-system))
+     (if async
+     (org-export-async-start
+         (lambda (f) (org-export-add-to-stack f 'html))
+       (let ((org-export-coding-system org-html-coding-system))
+         `(expand-file-name
+           (org-export-to-file
+            'html ,file ,subtreep ,visible-only ,body-only ',ext-plist))))
+       (let ((org-export-coding-system org-html-coding-system))
+     (org-export-to-file
+      'html file subtreep visible-only body-only ext-plist)))))
+
+(defun org-reveal-export-to-html
+  (&optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer to a reveal.js HTML file."
+  (interactive)
+  (let* ((extension (concat "." org-html-extension))
+         (file (org-export-output-file-name extension subtreep "/Users/thebitmonk/Desktop/zettelkasten/export/slides"))
+         (clientfile (org-export-output-file-name (concat "_client" extension) subtreep)))
+    ; export filename_client HTML file if multiplexing
+    (setq client-multiplex nil)
+    (let ((org-export-exclude-tags (cons "noexport_reveal" org-export-exclude-tags)))
+      (setq retfile (org-export-to-file 'reveal file
+		      async subtreep visible-only body-only ext-plist)))
+
+    ; export the client HTML file if client-multiplex is set true
+    ; by previous call to org-export-to-file
+    (if (eq client-multiplex t)
+        (org-export-to-file 'reveal clientfile
+          async subtreep visible-only body-only ext-plist))
+    retfile))
