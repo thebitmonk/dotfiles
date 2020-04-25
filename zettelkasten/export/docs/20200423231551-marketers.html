@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>All Marketers are Liars</title>
+<meta name="generator" content="Org mode" />
+<meta name="author" content="thebitmonk" />
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #ccc;
+    box-shadow: 3px 3px 3px #eee;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: visible;
+    padding-top: 1.2em;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    right: 10px;
+    padding: 3px;
+    border: 1px solid black;
+  }
+  pre.src:hover:before { display: inline;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+  /*]]>*/-->
+</style>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/htmlize.css"/>
+<link rel="stylesheet" type="text/css" href="https://fniessen.github.io/org-html-themes/styles/readtheorg/css/readtheorg.css"/>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/lib/js/jquery.stickytableheaders.min.js"></script>
+<script type="text/javascript" src="https://fniessen.github.io/org-html-themes/styles/readtheorg/js/readtheorg.js"></script>
+<script type="text/javascript">
+/*
+@licstart  The following is the entire license notice for the
+JavaScript code in this tag.
+
+Copyright (C) 2012-2020 Free Software Foundation, Inc.
+
+The JavaScript code in this tag is free software: you can
+redistribute it and/or modify it under the terms of the GNU
+General Public License (GNU GPL) as published by the Free Software
+Foundation, either version 3 of the License, or (at your option)
+any later version.  The code is distributed WITHOUT ANY WARRANTY;
+without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.
+
+As additional permission under GNU GPL version 3 section 7, you
+may distribute non-source (e.g., minimized or compacted) forms of
+that code without the copy of the GNU GPL normally required by
+section 4, provided you include this license notice and a URL
+through which recipients can access the Corresponding Source.
+
+
+@licend  The above is the entire license notice
+for the JavaScript code in this tag.
+*/
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+</head>
+<body>
+<div id="content">
+<h1 class="title">All Marketers are Liars</h1>
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#orgeac81c4">What is Ansible?</a></li>
+<li><a href="#org2386d8a"><span style='background-color:#ffdd01; color: #000;'>&nbsp;API Overview&nbsp;</span></a></li>
+<li><a href="#org8d918e0">Authentication</a>
+<ul>
+<li><a href="#orgf3c32cb"><b><b>REST API</b></b></a>
+<ul>
+<li><a href="#org5361c33">Sending with API →</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orgee0e8b2">Authorization</a></li>
+<li><a href="#orgf1ee96e">Creating Sub-Accounts</a>
+<ul>
+<li><a href="#org7f7d813">GET</a></li>
+<li><a href="#org9d06ba5">POST</a></li>
+<li><a href="#org780f89f">DELETE</a></li>
+<li><a href="#org336af4e">PUT</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<blockquote>
+<p>
+
+</p>
+
+<p>
+Winners don't do different things. They do things differently.
+</p>
+</blockquote>
+
+<div id="outline-container-orgeac81c4" class="outline-2">
+<h2 id="orgeac81c4">What is Ansible?</h2>
+</div>
+
+<div id="outline-container-org2386d8a" class="outline-2">
+<h2 id="org2386d8a"><span style='background-color:#ffdd01; color: #000;'>&nbsp;API Overview&nbsp;</span></h2>
+<div class="outline-text-2" id="text-org2386d8a">
+<p>
+Postmark helps deliver and track transactional emails for web applications. In a nutshell, the service replaces SMTP (or Sendmail) with a far more reliable, scalable and care-free environment. In addition, you can track statistics such as number of emails sent or processed, opens, bounces and spam complaints.
+</p>
+
+<p>
+<b><b>Things you should know</b></b>
+<span class="underline">Postmark</span> is <i>for</i> <b><b>transactional</b></b> <code>Email</code> only. You may not send newsletters, announcements, or any other bulk email. If you’re uncertain if your email qualifies as “transactional”, you can always contact support and we’ll review your usage.
+A confirmed email address is required to start sending. Before you can start sending emails, you will need to verify the email address you send from in our Signatures section.
+Maximum email size is 10 MB. This includes email content, headers, and attachments. You will receive an error if your emails are too large.
+Postmark will only accept attachments with specific file types, so please review our list of accepted file types. We also support inline image embedding.
+The maximum number of recipients for each email is 50, including all To, CC, and BCC recipients. Each recipient counts as a single Postmark email or a single Postmark credit for older accounts.
+</p>
+
+<p>
+<a href="https://postmarkapp.com/developer">PostMark Dev API</a>
+</p>
+
+<div class="figure">
+<p><img src="images/API_Overview/2020-04-25_11-52-55_Screen Shot 2020-04-10 at 12.52.16 pm.png" alt="2020-04-25_11-52-55_Screen Shot 2020-04-10 at 12.52.16 pm.png" />
+</p>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org8d918e0" class="outline-2">
+<h2 id="org8d918e0">Authentication</h2>
+<div class="outline-text-2" id="text-org8d918e0">
+<p>
+Sending emails through Postmark is simple. Before you start, you need to determine how you want to send your emails. Postmark has two ways of doing this:
+</p>
+
+
+<div class="figure">
+<p><img src="images/Authentication/2020-04-25_20-24-18_daily-planet.jpg" alt="2020-04-25_20-24-18_daily-planet.jpg" />
+</p>
+</div>
+</div>
+
+
+<div id="outline-container-orgf3c32cb" class="outline-3">
+<h3 id="orgf3c32cb"><b><b>REST API</b></b></h3>
+<div class="outline-text-3" id="text-orgf3c32cb">
+<p>
+Postmark’s REST API allows you to make HTTP requests to our service from your app.
+</p>
+</div>
+
+<div id="outline-container-org5361c33" class="outline-4">
+<h4 id="org5361c33">Sending with API →</h4>
+<div class="outline-text-4" id="text-org5361c33">
+</div>
+<ul class="org-ul">
+<li><a id="org2bc0379"></a>SMTP<br />
+<div class="outline-text-5" id="text-org2bc0379">
+<p>
+If you’re already using SMTP to send your emails, this makes migration a breeze. Simply point your existing configuration over to Postmark’s servers and we’ll handle the rest.
+</p>
+</div>
+</li>
+
+<li><a id="org056dfe7"></a>Sending with SMTP →<br />
+<div class="outline-text-5" id="text-org056dfe7">
+<p>
+If you’re already using SMTP to send your emails, this makes migration a breeze. Simply point your existing configuration over to Postmark’s servers and we’ll handle the rest.
+</p>
+</div>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-orgee0e8b2" class="outline-2">
+<h2 id="orgee0e8b2">Authorization</h2>
+<div class="outline-text-2" id="text-orgee0e8b2">
+<p>
+What is open tracking?#
+Sending emails with open tracking enabled will embed an invisible pixel into your emails that allows Postmark to record information when the email is viewed. Postmark handles the job of embedding the pixel and saving all of the information associated with the request. For every email you send and for each recipient you send to, you can see if your emails are getting read, in what environments, and more. When Postmark saves open tracking information, we save the information as a unique open, aggregated by the tag you sent the email with, and aggregated for your account overall.
+</p>
+
+<p>
+With the data provided by open tracking, you can get some new insights into your business:
+</p>
+
+<p>
+Individual open tracking—My user Jane hasn't opened any emails this month, maybe she isn't an active user any more? 
+Tracking opens by tag—Sending emails with an exclamation point in the subject results in two times the opens!
+Geographic information—20% of my emails are being read in Mexico, should I translate my app into Spanish?
+Email client—A majority of my emails are being read in Outlook, I should make sure my email designs look great there.
+Platform—Most of my users are reading emails on mobile devices, I need to get the mobile version of my site ready ASAP!
+Operating system—Only 2% of my users are reading emails on a Mac, maybe I don't need to invest in an OSX desktop application.
+Limitations#
+HTML only
+We can only add a tracking pixel to HTML emails. If you send plain text only emails or if a user only reads the plain text version, Postmark can't track opens for those emails.
+</p>
+
+<p>
+Blocked images
+If a user views emails in a client that blocks images from loading, Postmark can't track opens for those emails.
+</p>
+
+<p>
+Gmail
+Using the Gmail website and mobile applications will display images served through a proxy server. This means that Postmark will be able to detect when an open occurs for Gmail users. However, we won't be able to detect geography, operating system, and some other information.
+</p>
+
+<p>
+Individual open storage
+Postmark stores the information about individual opens for 45 days. Aggregated statistics are stored forever.
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">SENDGRID</th>
+<th scope="col" class="org-left">MAILGUN</th>
+<th scope="col" class="org-left">POSTMARK</th>
+<th scope="col" class="org-left">SES</th>
+<th scope="col" class="org-left">SPARKPOST</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">Bad support</td>
+<td class="org-left">Good Support</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">Okay Inboxing</td>
+<td class="org-left">Great Inboxing</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">No dedicated IP</td>
+<td class="org-left">Have dedicated IP Plans</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+<td class="org-left">&#xa0;</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+<div id="outline-container-orgf1ee96e" class="outline-2">
+<h2 id="orgf1ee96e">Creating Sub-Accounts</h2>
+<div class="outline-text-2" id="text-orgf1ee96e">
+</div>
+<div id="outline-container-org7f7d813" class="outline-3">
+<h3 id="org7f7d813">GET</h3>
+</div>
+<div id="outline-container-org9d06ba5" class="outline-3">
+<h3 id="org9d06ba5">POST</h3>
+</div>
+<div id="outline-container-org780f89f" class="outline-3">
+<h3 id="org780f89f">DELETE</h3>
+</div>
+<div id="outline-container-org336af4e" class="outline-3">
+<h3 id="org336af4e">PUT</h3>
+<div class="outline-text-3" id="text-org336af4e">
+<p>
+<a href="20200425111102-vuejs.html">R:vuejs</a>
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: thebitmonk</p>
+<p class="validation"><a href="http://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

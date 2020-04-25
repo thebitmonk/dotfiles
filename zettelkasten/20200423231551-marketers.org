@@ -1,0 +1,95 @@
+#+TITLE: All Marketers are Liars
+#+OPTIONS: num:nil timestamp:nil
+#+SETUPFILE: https://fniessen.github.io/org-html-themes/setup/theme-readtheorg.setup
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: highlight @@html:<span style='background-color:#ffdd01; color: #000;'>&nbsp;$1&nbsp;</span>@@
+
+
+#+BEGIN_QUOTE
+
+  Winners don't do different things. They do things differently.
+#+END_QUOTE
+
+* What is Ansible?
+
+* {{{highlight(API Overview)}}}
+  Postmark helps deliver and track transactional emails for web applications. In a nutshell, the service replaces SMTP (or Sendmail) with a far more reliable, scalable and care-free environment. In addition, you can track statistics such as number of emails sent or processed, opens, bounces and spam complaints.
+
+  **Things you should know**
+  _Postmark_ is /for/ **transactional** ~Email~ only. You may not send newsletters, announcements, or any other bulk email. If you’re uncertain if your email qualifies as “transactional”, you can always contact support and we’ll review your usage.
+  A confirmed email address is required to start sending. Before you can start sending emails, you will need to verify the email address you send from in our Signatures section.
+  Maximum email size is 10 MB. This includes email content, headers, and attachments. You will receive an error if your emails are too large.
+  Postmark will only accept attachments with specific file types, so please review our list of accepted file types. We also support inline image embedding.
+  The maximum number of recipients for each email is 50, including all To, CC, and BCC recipients. Each recipient counts as a single Postmark email or a single Postmark credit for older accounts.
+
+ [[https://postmarkapp.com/developer][PostMark Dev API]]
+#+DOWNLOADED: file:/Users/thebitmonk/Desktop/Screen Shot 2020-04-10 at 12.52.16 pm.png @ 2020-04-25 11:52:55
+[[file:images/API_Overview/2020-04-25_11-52-55_Screen Shot 2020-04-10 at 12.52.16 pm.png]]
+
+
+* Authentication
+  Sending emails through Postmark is simple. Before you start, you need to determine how you want to send your emails. Postmark has two ways of doing this:
+
+#+DOWNLOADED: file:/Users/thebitmonk/Desktop/daily-planet.jpg @ 2020-04-25 20:24:18
+[[file:images/Authentication/2020-04-25_20-24-18_daily-planet.jpg]]
+
+
+** **REST API**
+
+   Postmark’s REST API allows you to make HTTP requests to our service from your app.
+  
+*** Sending with API →
+
+**** SMTP
+     If you’re already using SMTP to send your emails, this makes migration a breeze. Simply point your existing configuration over to Postmark’s servers and we’ll handle the rest.
+
+**** Sending with SMTP →
+     If you’re already using SMTP to send your emails, this makes migration a breeze. Simply point your existing configuration over to Postmark’s servers and we’ll handle the rest.
+
+
+* Authorization
+  What is open tracking?#
+  Sending emails with open tracking enabled will embed an invisible pixel into your emails that allows Postmark to record information when the email is viewed. Postmark handles the job of embedding the pixel and saving all of the information associated with the request. For every email you send and for each recipient you send to, you can see if your emails are getting read, in what environments, and more. When Postmark saves open tracking information, we save the information as a unique open, aggregated by the tag you sent the email with, and aggregated for your account overall.
+  
+  With the data provided by open tracking, you can get some new insights into your business:
+  
+  Individual open tracking—My user Jane hasn't opened any emails this month, maybe she isn't an active user any more? 
+  Tracking opens by tag—Sending emails with an exclamation point in the subject results in two times the opens!
+  Geographic information—20% of my emails are being read in Mexico, should I translate my app into Spanish?
+  Email client—A majority of my emails are being read in Outlook, I should make sure my email designs look great there.
+  Platform—Most of my users are reading emails on mobile devices, I need to get the mobile version of my site ready ASAP!
+  Operating system—Only 2% of my users are reading emails on a Mac, maybe I don't need to invest in an OSX desktop application.
+  Limitations#
+  HTML only
+  We can only add a tracking pixel to HTML emails. If you send plain text only emails or if a user only reads the plain text version, Postmark can't track opens for those emails.
+  
+  Blocked images
+  If a user views emails in a client that blocks images from loading, Postmark can't track opens for those emails.
+  
+  Gmail
+  Using the Gmail website and mobile applications will display images served through a proxy server. This means that Postmark will be able to detect when an open occurs for Gmail users. However, we won't be able to detect geography, operating system, and some other information.
+  
+  Individual open storage
+  Postmark stores the information about individual opens for 45 days. Aggregated statistics are stored forever.
+
+  | SENDGRID        | MAILGUN                 | POSTMARK | SES | SPARKPOST |
+  |-----------------+-------------------------+----------+-----+-----------|
+  | Bad support     | Good Support            |          |     |           |
+  | Okay Inboxing   | Great Inboxing          |          |     |           |
+  | No dedicated IP | Have dedicated IP Plans |          |     |           |
+  |                 |                         |          |     |           |
+  
+
+* Creating Sub-Accounts
+** GET
+** POST
+** DELETE
+** PUT
+
+   
+   
+
+
+   [[file:20200425111102-vuejs.org][R:vuejs]]
+
+   

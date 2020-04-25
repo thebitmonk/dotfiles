@@ -1,0 +1,12 @@
+#+TITLE: build
+
+* IDEA What is build                                               :WWW:EASY:
+* WAITING Building in stoneage                            :RESEARCH:DEV:HARD:
+
+  [[http:google.com][Google]]
+
+  
+
+[[file:20200423231551-marketers.org][R:marketers]]
+
+[[file:20200425111102-vuejs.org][R:vuejs]]

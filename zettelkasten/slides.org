@@ -1,0 +1,43 @@
+#+REVEAL_ROOT: http://127.0.0.1:8000/reveal.js
+#+REVEAL_THEME: black
+#+REVEAL_TRANS: zoom
+#+OPTIONS: toc:1
+#+REVEAL_EXTRA_CSS: http://127.0.0.1:8000/css/slide.css
+#+OPTIONS: num:nil toc:nil timestamp:nil
+#+MACRO: color @@html:<font color="$1">$2</font>@@
+#+MACRO: highlight @@html:<span style='background-color:#ffdd01; color: #000;'>&nbsp;$1&nbsp;</span>@@
+
+
+#+TITLE: Ansible
+#+AUTHOR: Varun Jain
+#+EMAIL: varun@sendx.io
+
+* What is {{{highlight(Ansible)}}}
+  - Simple
+  - Lego Blocks
+  - Hackable
+
+* Single Colored Background
+  :PROPERTIES:
+  :reveal_background: #fcb7b7
+  :reveal_background_trans: slide
+  :END:
+
+* Changes in devops
+  :PROPERTIES:
+  :reveal_background: https://images.unsplash.com/photo-1517594422361-5eeb8ae275a9?ixlib=rb-1.2.1&w=1000&q=80
+  :reveal_background_trans: slide
+  :END:
+  - Started with bash scripts
+  - Moved to puppet & chef
+  - Came tools like Capistrano
+  - Now Ansible
+
+
+* Check Transitions
+#+ATTR_REVEAL: :frag (roll-in roll-in roll-in roll-in roll-in) :frag_idx (4 3 2 1 -)
+  * I will grow.
+  * I will shrink.
+  * I rolled in.
+  * I will fade out.
+  * I don't fragment.
